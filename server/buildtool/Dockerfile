@@ -1,5 +1,5 @@
 # escape=`
-FROM mcr.microsoft.com/server:ltsc2022 as buildtool
+FROM mcr.microsoft.com/windows/server:ltsc2022 as buildtool
 
 # Restore the default Windows shell for correct batch processing.
 SHELL ["cmd", "/S", "/C"]

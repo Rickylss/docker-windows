@@ -1,5 +1,5 @@
 # escape=`
-FROM mcr.microsoft.com/server:ltsc2022 as winget
+FROM mcr.microsoft.com/windows/server:ltsc2022 as winget
 
 # Restore the default Windows shell for correct batch processing.
 SHELL ["cmd", "/S", "/C"]
