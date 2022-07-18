@@ -39,8 +39,8 @@ ADD [ "https://github.com/microsoft/winget-cli/archive/master.zip", "C:\\TEMP\\w
 RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\winget-cli.zip -DestinationPath C:\TEMP\ -Force"
 RUN cd C:\TEMP && rename winget-cli-master winget-cli
 RUN cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build" && vcvarsall.bat x64 && cd C:\TEMP\winget-cli && msbuild -t:restore -m -p:RestorePackagesConfig=true -p:Configuration=Release src\AppInstallerCLI.sln
-RUN cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build" && cd C:\TEMP\winget-cli && msbuild -m -p:Configuration=Release src\AppInstallerCLI.sln
-RUN mkdir "C:\Program Files\winget-cli" && move "C:\TEMP\winget-cli\src\x64\Release\AppInstallerCLI\winget.exe" "C:\Program Files\winget-cli\" && move "C:\TEMP\winget-cli\src\x64\Release\AppInstallerCLI\resources.pri" "C:\Program Files\winget-cli\"
+RUN cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build" && vcvarsall.bat x64 && cd C:\TEMP\winget-cli && msbuild -m -p:Configuration=Release src\AppInstallerCLI.sln
+RUN mkdir "%ProgramFiles(x86)%\winget-cli" && move "C:\TEMP\winget-cli\src\x64\Release\AppInstallerCLI\winget.exe" "%ProgramFiles(x86)%\winget-cli\" && move "C:\TEMP\winget-cli\src\x64\Release\AppInstallerCLI\resources.pri" "%ProgramFiles(x86)%\winget-cli\"
 
 # Define the entry point for the Docker container.
 # This entry point starts the developer command prompt and launches the PowerShell shell.
